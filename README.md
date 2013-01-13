@@ -76,6 +76,10 @@ TBD
 
 - Samples
 
+## Versions
+
+- 0.0.1: Published
+
 ## Contribution
 
 Feel free to [file issues](https://github.com/ajlopez/ObjectStream) and submit
