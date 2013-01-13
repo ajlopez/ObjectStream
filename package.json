@@ -7,10 +7,11 @@
 , "main": "./lib/objectstream.js"
 , "engines": { "node": ">= 0.6.0 && < 0.9.0" }
 , "scripts": {
-    "test": "node ./test.js"
+    "test": "nodeunit test"
   }
 , "dependencies": {
   }
 , "devDependencies": {
+    "nodeunit": ">= 0.7.4"
   }
 }
