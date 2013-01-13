@@ -48,3 +48,19 @@ exports['write string to object stream'] = function (test) {
     objst.write("foo");
     objst.end();
 };
+
+
+exports['write object to object stream'] = function (test) {
+    test.expect(1);
+    var stream = {
+        write: function (data) {
+            test.equal(data, '{"x":1,"y":2}\n');
+        },
+        end: function () {
+            test.done();
+        }
+    }
+    var objst = objectstream.createSerializeStream(stream);
+    objst.write({ x: 1, y: 2});
+    objst.end();
+};
