@@ -1,5 +1,7 @@
 
-var objectstream = require('..');
+var objectstream = require('..'),
+    path = require('path'),
+    fs = require('fs');
 
 exports['write number to object stream'] = function (test) {
     test.expect(1);
@@ -61,6 +63,23 @@ exports['write object to object stream'] = function (test) {
         }
     }
     var objst = objectstream.createSerializeStream(stream);
+    objst.write({ x: 1, y: 2});
+    objst.end();
+};
+
+exports['write object to file'] = function (test) {
+    test.expect(1);
+    var filename = path.join(__dirname, 'test.txt');
+
+    var stream = fs.createWriteStream(filename);
+
+    stream.on('close', function () {
+        var content = fs.readFileSync(filename).toString();
+        test.equal(content, '{"x":1,"y":2}\n');
+        test.done();
+    });
+
+    var objst = objectstream.createStream(stream);
     objst.write({ x: 1, y: 2});
     objst.end();
 };
