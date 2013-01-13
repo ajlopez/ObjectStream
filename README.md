@@ -43,6 +43,22 @@ objstream.on('end', function () { console.dir('done'); });
 ```
 You will receive two deserialized objects.
 
+There is a bidirectional object stream:
+```js
+var objstream = fs.createStream(bidirectionalstream);
+```
+For example, the parameter could be a socket, that is a bidirectional stream implementation.
+
+Alternatively, you can specify a readable stream and writable stream:
+```js
+var objstream = fs.createStream(readstream, writestream);
+```
+You can write and read objects:
+```js
+objstream.on('data', function (obj) { console.dir(obj); });
+objstream.write({ message: 'hello', arguments: { name: 'Adam' }});
+```
+
 ## Development
 
 ```
