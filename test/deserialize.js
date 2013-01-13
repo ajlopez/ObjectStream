@@ -1,5 +1,7 @@
 
-var objectstream = require('..');
+var objectstream = require('..'),
+    path = require('path'),
+    fs = require('fs');
 
 exports['read number from object stream'] = function (test) {
     test.expect(1);
@@ -65,3 +67,20 @@ exports['read object from object stream'] = function (test) {
     stream.emit('data', '"y":2}\n');
     stream.emit('end');
 };
+
+exports['read objects from file'] = function (test) {
+    test.expect(9);
+
+    var stream = fs.createReadStream(path.join(__dirname, 'objects.txt'));
+    var objst = objectstream.createStream(stream);
+    var expected = 1;
+
+    objst.on('data', function (data) {
+        test.ok(data);
+        test.ok(data.name);
+        test.equal(data.value, expected++);
+    });
+
+    objst.on('end', function () { test.done(); });
+};
+
