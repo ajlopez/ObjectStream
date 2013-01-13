@@ -19,7 +19,30 @@ Reference in your program:
 var objectstream = require('objectstream');
 ```
 
-TBD
+Write objects to a serialize stream:
+```js
+var stream = fs.createSerializeStream(filename);
+var objstream = objectstream.createSerializeStream(stream);
+objstream.write({ name: 'Adam', age: 800 });
+objstream.write({ name: 'Eve', age: 700 });
+objstream.end();
+```
+`createSerializeStream` accepts a writable stream as parameter. In this example, the objects will be written
+to a file. The final content will be two lines, with the objects serialized using `JSON.stringify`:
+```
+{"name":"Adam","age":800}
+{"name":"Eve","age":700}
+```
+
+Now, given the same file (already closed), you can read the objects using a deserialize stream:
+```js
+var stream = fs.createDeserializeStream(filename);
+var objstream = objectstream.createDeserializeStream(stream);
+objstream.on('data', function (data) { console.dir(data); });
+objstream.on('end', function () { console.dir('done'); });
+```
+You will receive two deserialized objects.
+
 ## Development
 
 ```

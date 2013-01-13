@@ -6,6 +6,7 @@ var objectstream = require('..'),
 exports['write number to object stream'] = function (test) {
     test.expect(1);
     var stream = {
+        on: function () { },
         write: function (data) {
             test.equal(data, "4\n");
         },
@@ -21,6 +22,7 @@ exports['write number to object stream'] = function (test) {
 exports['write two numbers to object stream'] = function (test) {
     test.expect(1);
     var stream = {
+        on: function () { },
         buffer: '',
         write: function (data) {
             this.buffer += data;
@@ -39,6 +41,7 @@ exports['write two numbers to object stream'] = function (test) {
 exports['write string to object stream'] = function (test) {
     test.expect(1);
     var stream = {
+        on: function () { },
         write: function (data) {
             test.equal(data, '"foo"\n');
         },
@@ -55,6 +58,7 @@ exports['write string to object stream'] = function (test) {
 exports['write object to object stream'] = function (test) {
     test.expect(1);
     var stream = {
+        on: function () { },
         write: function (data) {
             test.equal(data, '{"x":1,"y":2}\n');
         },
