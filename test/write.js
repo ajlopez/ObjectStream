@@ -3,7 +3,24 @@ var objectstream = require('..'),
     path = require('path'),
     fs = require('fs');
 
-exports['write number to object stream'] = function (test) {
+exports['raise if not writable'] = function (test) {
+    test.expect(1);
+    var stream = {
+        write: function (data) {
+            test.equal(data, "4\n");
+        },
+        writable: false,
+        end: function () {
+            test.done();
+        },
+        on: function () { }
+    }
+    var objst = objectstream.createStream(stream);
+    test.throws(function () { objst.write(4) });
+    test.done();
+};
+
+exports['raise if not writable'] = function (test) {
     test.expect(1);
     var stream = {
         write: function (data) {
