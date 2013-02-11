@@ -9,6 +9,7 @@ exports['write number to object stream'] = function (test) {
         write: function (data) {
             test.equal(data, "4\n");
         },
+        writable: true,
         end: function () {
             test.done();
         },
@@ -26,6 +27,7 @@ exports['write two numbers to object stream'] = function (test) {
         write: function (data) {
             this.buffer += data;
         },
+        writable: true,
         end: function () {
             test.equal(this.buffer, "1\n2\n");
             test.done();
@@ -44,6 +46,7 @@ exports['write string to object stream'] = function (test) {
         write: function (data) {
             test.equal(data, '"foo"\n');
         },
+        writable: true,
         end: function () {
             test.done();
         },
@@ -60,6 +63,7 @@ exports['write object to object stream'] = function (test) {
         write: function (data) {
             test.equal(data, '{"x":1,"y":2}\n');
         },
+        writable: true,
         end: function () {
             test.done();
         },

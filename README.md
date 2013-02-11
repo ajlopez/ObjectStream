@@ -79,7 +79,7 @@ TBD
 ## Versions
 
 - 0.0.1: Published
-- 0.0.2: In master, under development
+- 0.0.2: Published. Improved write stream, testing writable property before write.
 
 ## Contribution
 
