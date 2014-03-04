@@ -1,7 +1,7 @@
 { "name": "objectstream"
 , "description": "Bidirectional and unidirectional object streams for Node.js"
 , "keywords": [ "object", "message", "stream", "bidirectional", "nodejs" ]
-, "version": "0.0.3"
+, "version": "0.0.4"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/ObjectStream.git" }
 , "main": "./lib/objectstream.js"
