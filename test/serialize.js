@@ -4,7 +4,8 @@ var objectstream = require('..'),
     fs = require('fs');
 
 exports['write number to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         on: function () { },
         write: function (data) {
@@ -15,13 +16,15 @@ exports['write number to object stream'] = function (test) {
             test.done();
         }
     }
+    
     var objst = objectstream.createSerializeStream(stream);
     objst.write(4);
     objst.end();
 };
 
 exports['write two numbers to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         on: function () { },
         buffer: '',
@@ -34,14 +37,17 @@ exports['write two numbers to object stream'] = function (test) {
             test.done();
         }
     }
+    
     var objst = objectstream.createSerializeStream(stream);
+    
     objst.write(1);
     objst.write(2);
     objst.end();
 };
 
 exports['write string to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         on: function () { },
         write: function (data) {
@@ -52,14 +58,17 @@ exports['write string to object stream'] = function (test) {
             test.done();
         }
     }
+    
     var objst = objectstream.createSerializeStream(stream);
+    
     objst.write("foo");
     objst.end();
 };
 
 
 exports['write object to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         on: function () { },
         write: function (data) {
@@ -70,13 +79,16 @@ exports['write object to object stream'] = function (test) {
             test.done();
         }
     }
+    
     var objst = objectstream.createSerializeStream(stream);
+    
     objst.write({ x: 1, y: 2});
     objst.end();
 };
 
 exports['write object to file'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var filename = path.join(__dirname, 'test.txt');
 
     var stream = fs.createWriteStream(filename);
@@ -88,6 +100,8 @@ exports['write object to file'] = function (test) {
     });
 
     var objst = objectstream.createStream(stream);
+    
     objst.write({ x: 1, y: 2});
     objst.end();
 };
+

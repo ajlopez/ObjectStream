@@ -4,7 +4,8 @@ var objectstream = require('..'),
     fs = require('fs');
 
 exports['raise if not writable'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         write: function (data) {
             test.equal(data, "4\n");
@@ -15,13 +16,15 @@ exports['raise if not writable'] = function (test) {
         },
         on: function () { }
     }
+    
     var objst = objectstream.createStream(stream);
     test.throws(function () { objst.write(4) });
     test.done();
 };
 
 exports['raise if not writable'] = function (test) {
-    test.expect(1);
+    test.async(1);
+    
     var stream = {
         write: function (data) {
             test.equal(data, "4\n");
@@ -32,13 +35,16 @@ exports['raise if not writable'] = function (test) {
         },
         on: function () { }
     }
+    
     var objst = objectstream.createStream(stream);
+    
     objst.write(4);
     objst.end();
 };
 
 exports['write two numbers to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         buffer: '',
         write: function (data) {
@@ -51,14 +57,17 @@ exports['write two numbers to object stream'] = function (test) {
         },
         on: function () { }
     }
+    
     var objst = objectstream.createStream(stream);
+    
     objst.write(1);
     objst.write(2);
     objst.end();
 };
 
 exports['write string to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         write: function (data) {
             test.equal(data, '"foo"\n');
@@ -69,13 +78,16 @@ exports['write string to object stream'] = function (test) {
         },
         on: function () { }
     }
+    
     var objst = objectstream.createStream(stream);
+    
     objst.write("foo");
     objst.end();
 };
 
 exports['write object to object stream'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var stream = {
         write: function (data) {
             test.equal(data, '{"x":1,"y":2}\n');
@@ -86,13 +98,15 @@ exports['write object to object stream'] = function (test) {
         },
         on: function () { }
     }
+    
     var objst = objectstream.createStream(stream);
     objst.write({ x: 1, y: 2});
     objst.end();
 };
 
 exports['write object to file'] = function (test) {
-    test.expect(1);
+    test.async();
+    
     var filename = path.join(__dirname, 'test.txt');
 
     var stream = fs.createWriteStream(filename);
@@ -107,3 +121,4 @@ exports['write object to file'] = function (test) {
     objst.write({ x: 1, y: 2});
     objst.end();
 };
+

@@ -2,10 +2,12 @@
 var objectstream = require('..'),
     path = require('path'),
     fs = require('fs');
-
+var EventEmitter = require('events');
+    
 exports['read number from object stream'] = function (test) {
-    test.expect(1);
-    var stream = new process.EventEmitter();
+    test.async();
+    
+    var stream = new EventEmitter();
     var objst = objectstream.createDeserializeStream(stream);
 
     objst.on('data', function (data) { test.equal(data, 4); });
@@ -16,10 +18,11 @@ exports['read number from object stream'] = function (test) {
 };
 
 exports['read two numbers from object stream'] = function (test) {
-    test.expect(2);
+    test.async();
+
     var expected = 1;
 
-    var stream = new process.EventEmitter();
+    var stream = new EventEmitter();
     var objst = objectstream.createDeserializeStream(stream);
 
     objst.on('data', function (data) {
@@ -33,9 +36,9 @@ exports['read two numbers from object stream'] = function (test) {
 };
 
 exports['read string from object stream'] = function (test) {
-    test.expect(1);
+    test.async();
 
-    var stream = new process.EventEmitter();
+    var stream = new EventEmitter();
 
     var objst = objectstream.createDeserializeStream(stream);
 
@@ -50,9 +53,9 @@ exports['read string from object stream'] = function (test) {
 };
 
 exports['read object from object stream'] = function (test) {
-    test.expect(3);
+    test.async();
 
-    var stream = new process.EventEmitter();
+    var stream = new EventEmitter();
     var objst = objectstream.createDeserializeStream(stream);
 
     objst.on('data', function (data) {
@@ -69,7 +72,7 @@ exports['read object from object stream'] = function (test) {
 };
 
 exports['read objects from file'] = function (test) {
-    test.expect(9);
+    test.async();
 
     var stream = fs.createReadStream(path.join(__dirname, 'objects.txt'));
     var objst = objectstream.createStream(stream);

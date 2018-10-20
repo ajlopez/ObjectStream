@@ -5,13 +5,13 @@
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/ObjectStream.git" }
 , "main": "./lib/objectstream.js"
-, "engines": { "node": ">= 0.6.0 && < 0.11.0" }
+, "engines": { "node": ">= 6.0.0" }
 , "scripts": {
-    "test": "nodeunit test"
+    "test": "simpleunit -r ./test"
   }
 , "dependencies": {
   }
 , "devDependencies": {
-    "nodeunit": ">= 0.7.4"
+    "simpleunit": "0.0.7"
   }
 }
