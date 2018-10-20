@@ -82,6 +82,7 @@ TBD
 - 0.0.2: Published. Improved write stream, testing writable property before write.
 - 0.0.3: Published. Reviewing internal events. Updated engine range
 - 0.0.4: Published. Write only if output stream is writable
+- 0.0.5: Published. Using events module; using simpleunit
 
 ## Contribution
 
